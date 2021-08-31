@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NETcore.Repository.Data;
 using NETcore.Repository.Interface;
@@ -17,17 +17,16 @@ namespace NETcore.Base
         where Repository : IRepository<Entity,Key>
     {
         private readonly Repository repository;
-        private AccountRepository repository1;
 
         public BaseController(Repository repository)
         {
             this.repository = repository;
         }
 
-        public BaseController(AccountRepository repository1)
-        {
-            this.repository1 = repository1;
-        }
+        //public BaseController(AccountRepository repository)
+        //{
+        //    this.repository = repository;
+        //}
 
         [HttpPost]
         public ActionResult Insert(Entity entity)
@@ -36,23 +35,23 @@ namespace NETcore.Base
             {
                 if (repository.Insert(entity) > 0)
                 {
-                    return Ok("Data Berhasil Ditambahkan");
+                    return Ok(new { status = HttpStatusCode.OK, message = "Data Berhasil ditambahkan" });
                 }
                 else if (repository.Insert(entity) == 0)
                 {
-                    return BadRequest("Data Tidak Lengkap");
+                    return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Gagal Menambahkan Data" });
                 }
                 else
                 {
-                    return BadRequest("Data Sudah Ada");
+                    return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data Sudah ada" });
                 }
             }
             catch (Exception)
             {
-                return BadRequest("Data Sudah Ada");
+
+                return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data Sudah ada" });
             }
-            //personsRepository.Insert(persons);
-            //return BadRequest("Data Sudah Ada");
+
         }
         //public ActionResult Insert(Person person)
         //{
@@ -100,24 +99,20 @@ namespace NETcore.Base
         }
 
         [HttpGet]
-
         public ActionResult Get()
         {
             var data = repository.Get();
             if (data.Count() == 0)
             {
+
                 return NotFound(new { status = HttpStatusCode.NotFound, message = "Data Kosong" });
-
             }
-
-            return Ok(new { status = HttpStatusCode.OK, data, message = "Data Berhasil Ditampilakn" });
+            return Ok(new { status = HttpStatusCode.OK, data, message = "Data Berhasil ditampilkan" });
         }
-
         [HttpGet("{key}")]
-
-        public ActionResult Get(Key key )
+        public ActionResult Get(Key key)
         {
-            var data = repository.Get();
+            var data = repository.Get(key);
             //Jika data yang dicari tidak ada
             if (data == null)
             {
@@ -125,7 +120,6 @@ namespace NETcore.Base
             }
             return Ok(new { status = HttpStatusCode.OK, data, message = "Data ditemukan" });
         }
-
 
         //public ActionResult Get(string NIK)
         //{
@@ -155,7 +149,7 @@ namespace NETcore.Base
             {
                 return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data Gagal dihapus" });
             }
-
+            repository.Delete(key);
             return Ok(new { status = HttpStatusCode.OK, message = "Data Berhasil dihapus" });
         }
     }
