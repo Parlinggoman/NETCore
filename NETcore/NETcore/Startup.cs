@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using NETcore.Context;
 using NETcore.Repository;
 using NETcore.Repository.Data;
+using Newtonsoft.Json;
 //using Microsoft.Extensions.Configuration.
 using System;
 using System.Collections.Generic;
@@ -27,28 +28,14 @@ namespace NETcore
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        //public void ConfigureServices(IServiceCollection services)
-        //{
-        //    services.AddControllers();
-        //    services.AddScoped<PersonRepository>();
-        //    services.AddScoped<AccountRepository>();
-        //    services.AddScoped<EducationRepository>();
-        //    services.AddScoped<ProfilingRepository>();
-        //    services.AddScoped<UniversityRepository>();
-        //    // IServiceCollection serviceCollection = services.AddDbContext<MyContext>(Options => options.usesqlserver);
-        //    services.AddDbContext<MyContext>(options => options.UseLazyLoadingProxies()
-        //    .UseSqlServer(Configuration.GetConnectionString("NETCoreContext")));
-        //}
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddControllers();
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             );
 
             services.AddScoped<PersonRepository>();
