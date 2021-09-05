@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace NETcore.Models
 {
-    [Table("tb_m_roles")]
+    [Table("tb_m_Roles")]
     public class Role
     {
         [Key]
