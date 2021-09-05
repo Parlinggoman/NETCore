@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NETcore.Model;
+using NETcore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,8 @@ namespace NETcore.Context
         public DbSet<Profiling> Profilings { get; set; }
         public DbSet<ResetPassword> ResetPasswords { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +40,9 @@ namespace NETcore.Context
             modelBuilder.Entity<University>()
                .HasMany(u => u.Education)
                .WithOne(e => e.University);
+            modelBuilder.Entity<Role>()
+               .HasMany(a => a.Account)
+               .WithOne(r => r.Roles);
 
         }
         

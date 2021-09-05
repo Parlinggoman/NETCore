@@ -32,6 +32,8 @@ namespace NETcore.Repository.Data
                                    Email = p.NIK,
                                    Password = a.Password
                                }).ToList();
+
+
             if (getLoginVMs.Count == 0)
             {
                 return null;
@@ -73,6 +75,8 @@ namespace NETcore.Repository.Data
 
             return null;
         }
+
+
         public bool SaveResetPassword(string email, int otp, string nik)
         {
             var resetPassword = new ResetPassword()

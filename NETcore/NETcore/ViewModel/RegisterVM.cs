@@ -28,7 +28,7 @@ namespace NETcore.ViewModel
         [Phone(ErrorMessage = "Phone Number Name Harus di Isi")]
        // [StringLength(12,ErrorMessage ="PhoneNumber Harus Terdiri Dari 12 Digit")]
         public string PhoneNumber { get; set; }
-
+        [Required(ErrorMessage ="BirthDate Harus diisi")]
         public DateTime BirthDate { get; set; }
 
 
@@ -37,25 +37,30 @@ namespace NETcore.ViewModel
         //    Male,
         //    Female
         //}
+        [Required, Range(0, 1, ErrorMessage = "Gender harus diantara 0 atau 1")]
         public int Gender { get; set; }
+        [Required(ErrorMessage = "Salary Depan tidak boleh kosong")]
         public int Salary { get; set; }
-        [EmailAddress]
+        [Required(ErrorMessage = "Email tidak boleh kosong"),
+       EmailAddress(ErrorMessage = "Alamat Email tidak valid")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Password Harus di Isi")]
-        // [MinLength(6,ErrorMessage = "Password Minimal 6 Digit")]
+
+        [Required(ErrorMessage = "Password tidak boleh kosong"),
+         MinLength(8, ErrorMessage = "Password Minimal 8 Karakter"),
+         RegularExpression("^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\\D*\\d)[^:&.~\\s]{5,20}$", ErrorMessage = "Password harus mengadung huruf besar,huruf kecil dan angka ")]
         public string Password { internal get; set; }
+        [Required(ErrorMessage = "Degree tidak boleh kosong")]
         public string Degree { get; set; }
+        [Required(ErrorMessage = "GPA tidak boleh kosong")]
         public string GPA { get; set; }
-       // public object Id { get; internal set; }
+        [Required(ErrorMessage = "UniversityId tidak boleh kosong")]
         public int UniversityId{ get; set; }
 
-    
+        [Required(ErrorMessage = "RoleId tidak boleh kosong")]
+        public int RoleId { get; set; }
 
 
-        //internal static IEnumerable<RegisterVM> ToList()
-        //{
-        //    throw new NotImplementedException();
-        //}
+
     }
 
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\source\\repos\\NETcore\\NETcore\\NETcore.csproj": {}
+    "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\NetcoreTugasbaru\\NETcore\\NETcore\\NETcore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\source\\repos\\NETcore\\NETcore\\NETcore.csproj": {
+    "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\NetcoreTugasbaru\\NETcore\\NETcore\\NETcore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\source\\repos\\NETcore\\NETcore\\NETcore.csproj",
+        "projectUniqueName": "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\NetcoreTugasbaru\\NETcore\\NETcore\\NETcore.csproj",
         "projectName": "NETcore",
-        "projectPath": "C:\\Users\\user\\source\\repos\\NETcore\\NETcore\\NETcore.csproj",
+        "projectPath": "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\NetcoreTugasbaru\\NETcore\\NETcore\\NETcore.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\source\\repos\\NETcore\\NETcore\\obj\\",
+        "outputPath": "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\NetcoreTugasbaru\\NETcore\\NETcore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

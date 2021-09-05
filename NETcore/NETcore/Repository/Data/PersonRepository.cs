@@ -1,6 +1,7 @@
 ﻿using NETcore.Context;
 using NETcore.Model;
 using NETcore.ViewModel;
+using NETcore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace NETcore.Repository.Data
 
             var RegisterVMs = (from p in myContext.Persons
                                join a in myContext.Accounts on p.NIK equals a.NIK
+                               join rl in myContext.Roles on a.RoleId equals rl.RoleId
                                join pf in myContext.Profilings on a.NIK equals pf.NIK
                                join e in myContext.Educations on pf.EducationId equals e.Id
                                //join u in myContext.University on e.UniversityId equals u.UniversityId
@@ -42,7 +44,8 @@ namespace NETcore.Repository.Data
                                    Password = a.Password,
                                    Degree = e.Degree,
                                    GPA = e.GPA,
-                                   UniversityId=e.UniversityId
+                                   UniversityId=e.UniversityId,
+                                   RoleId=rl.RoleId
 
 
                                }).ToList();
@@ -68,6 +71,7 @@ namespace NETcore.Repository.Data
             {
                 return (from p in myContext.Persons
                         join a in myContext.Accounts on p.NIK equals a.NIK
+                        join rl in myContext.Roles on a.RoleId equals rl.RoleId
                         join pf in myContext.Profilings on a.NIK equals pf.NIK
                         join e in myContext.Educations on pf.EducationId equals e.Id
                         join u in myContext.University on e.UniversityId equals u.UniversityId
@@ -94,7 +98,8 @@ namespace NETcore.Repository.Data
                             Password = a.Password,
                             Degree = e.Degree,
                             GPA = e.GPA,
-                            UniversityId=e.UniversityId
+                            UniversityId=e.UniversityId,
+                            RoleId=rl.RoleId
 
 
                         }).Where(p => p.NIK == NIK).First();
@@ -122,8 +127,8 @@ namespace NETcore.Repository.Data
             myContext.Accounts.Add(new Account()
             {
                 NIK = register.NIK,
-                Password = BCrypt.Net.BCrypt.HashPassword(register.Password, BCrypt.Net.BCrypt.GenerateSalt(12))
-
+                Password = BCrypt.Net.BCrypt.HashPassword(register.Password, BCrypt.Net.BCrypt.GenerateSalt(12)),
+                RoleId = register.RoleId
             });
             myContext.SaveChanges();
 
@@ -138,6 +143,25 @@ namespace NETcore.Repository.Data
                 EducationId = education.Id,
             });
             return myContext.SaveChanges();
+        }
+        public string ValidationUnique(string nik, string email, string phone)
+        {
+            if (dbSet.Find(nik) != null)
+            {
+                return "NIK sudah ada";
+            }
+
+            if (dbSet.Where(per => per.Email == email).Count() > 0)
+            {
+                return "Email sudah ada";
+            }
+
+            if (dbSet.Where(per => per.Phone == phone).Count() > 0)
+            {
+                return "Nomor hp sudah ada";
+            }
+
+            return "1";
         }
     }
  }
