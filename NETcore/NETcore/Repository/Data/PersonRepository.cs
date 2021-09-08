@@ -1,5 +1,4 @@
 ﻿using NETcore.Context;
-using NETcore.Model;
 using NETcore.ViewModel;
 using NETcore.Models;
 using System;
@@ -24,29 +23,33 @@ namespace NETcore.Repository.Data
         {
 
 
-            var RegisterVMs = (from p in myContext.Persons
-                               join a in myContext.Accounts on p.NIK equals a.NIK
-                               join rl in myContext.Roles on a.RoleId equals rl.RoleId
-                               join pf in myContext.Profilings on a.NIK equals pf.NIK
-                               join e in myContext.Educations on pf.EducationId equals e.Id
-                               //join u in myContext.University on e.UniversityId equals u.UniversityId
+            var RegisterVMs = (from per in myContext.Persons
+                               join acc in myContext.Accounts on
+                               per.NIK equals acc.NIK
+                               join accrole in myContext.AccountRoles on
+                               acc.NIK equals accrole.NIK
+                               join role in myContext.Roles on
+                               accrole.RoleId equals role.RoleId
+                               join prf in myContext.Profilings on
+                               acc.NIK equals prf.NIK
+                               join edu in myContext.Educations on
+                               prf.EducationId equals edu.Id
                                select new RegisterVM
                                {
-                                     NIK = p.NIK,
-                                   NamaLengkap = p.FirstName + " " + p.LastName,
-                                   FirstName = p.FirstName,
-                                   LastName = p.LastName,
-                                   PhoneNumber = p.Phone,
-                                   BirthDate = p.BirthDate,
-                                   Gender = (int)p.GenderName,
-                                   Salary = p.Salary,
-                                   Email = p.Email,
-                                   Password = a.Password,
-                                   Degree = e.Degree,
-                                   GPA = e.GPA,
-                                   UniversityId=e.UniversityId,
-                                   RoleId=rl.RoleId
-
+                                   NIK = per.NIK,
+                                   NamaLengkap = per.FirstName + " " + per.LastName,
+                                   FirstName = per.FirstName,
+                                   LastName = per.LastName,
+                                   PhoneNumber = per.Phone,
+                                   BirthDate = per.BirthDate,
+                                   Gender = (int)per.GenderName,
+                                   Salary = per.Salary,
+                                   Email = per.Email,
+                                   Password = acc.Password,
+                                   Degree = edu.Degree,
+                                   GPA = edu.GPA,
+                                   UniversityId = edu.UniversityId,
+                                   AccountRoles = acc.AccountRoles
 
                                }).ToList();
             if (RegisterVMs.Count == 0)
@@ -58,56 +61,62 @@ namespace NETcore.Repository.Data
             //  return RegisterVMs;
         }
 
-       
+
 
         public RegisterVM GetRegister(string NIK)
         {
-            if (dbSet.Find(NIK) == null)
+            if (myContext.Profilings.Find(NIK) == null)
             {
                 return null;
-
             }
-            else
+
+
+            return (from per in myContext.Persons
+                    join acc in myContext.Accounts on
+                    per.NIK equals acc.NIK
+                    join accrole in myContext.AccountRoles on
+                    acc.NIK equals accrole.NIK
+                    join role in myContext.Roles on
+                    accrole.RoleId equals role.RoleId
+                    join prf in myContext.Profilings on
+                    acc.NIK equals prf.NIK
+                    join edu in myContext.Educations on
+                    prf.EducationId equals edu.Id
+                    select new RegisterVM
+                    {
+                        NIK = per.NIK,
+                        NamaLengkap = per.FirstName + " " + per.LastName,
+                        FirstName = per.FirstName,
+                        LastName = per.LastName,
+                        PhoneNumber = per.Phone,
+                        BirthDate = per.BirthDate,
+                        Gender = (int)per.GenderName,
+                        Salary = per.Salary,
+                        Email = per.Email,
+                        Password = acc.Password,
+                        Degree = edu.Degree,
+                        GPA = edu.GPA,
+                        UniversityId = edu.UniversityId,
+                        AccountRoles = acc.AccountRoles
+
+
+                    }).Where(p => p.NIK == NIK).First();
+            
+
+        }
+        public int AddNewAccountRole(string nIk, int RoleId)
+        {
+            //save entity accountrole
+            myContext.AccountRoles.Add(new AccountRole()
             {
-                return (from p in myContext.Persons
-                        join a in myContext.Accounts on p.NIK equals a.NIK
-                        join rl in myContext.Roles on a.RoleId equals rl.RoleId
-                        join pf in myContext.Profilings on a.NIK equals pf.NIK
-                        join e in myContext.Educations on pf.EducationId equals e.Id
-                        join u in myContext.University on e.UniversityId equals u.UniversityId
-                        select new RegisterVM
-                        {
-
-                            //        )
-                            //}
-                            //var RegisterVMs = (from p in myContext.Persons
-                            //                   join a in myContext.Accounts on p.NIK equals a.NIK
-                            //                   join pf in myContext.Profilings on a.NIK equals pf.NIK
-                            //                   join e in myContext.Educations on pf.EducationId equals e.Id
-                            //                   select new RegisterVM
-                            //                   {
-                            NIK = p.NIK,
-                            NamaLengkap = p.FirstName + " " + p.LastName,
-                            //FirstName = p.FirstName,
-                            //LastName = p.LastName,
-                            PhoneNumber = p.Phone,
-                            BirthDate = p.BirthDate,
-                            Gender = (int)p.GenderName,
-                            Salary = p.Salary,
-                            Email = p.Email,
-                            Password = a.Password,
-                            Degree = e.Degree,
-                            GPA = e.GPA,
-                            UniversityId=e.UniversityId,
-                            RoleId=rl.RoleId
-
-
-                        }).Where(p => p.NIK == NIK).First();
-            }
+                NIK = nIk,
+                RoleId = RoleId
+            });
+            return myContext.SaveChanges();
 
         }
 
-      
+
         public int  InsertRegister(RegisterVM register)
         {
             myContext.Persons.Add(new Person()
@@ -128,14 +137,30 @@ namespace NETcore.Repository.Data
             {
                 NIK = register.NIK,
                 Password = BCrypt.Net.BCrypt.HashPassword(register.Password, BCrypt.Net.BCrypt.GenerateSalt(12)),
-                RoleId = register.RoleId
+                //RoleId = register.RoleId
             });
             myContext.SaveChanges();
 
-     
+            myContext.AccountRoles.Add(new AccountRole()
+            {
+                NIK = register.NIK,
+                RoleId = register.RoleId,
+            });
+            myContext.SaveChanges();
+
+            //save entity education
             Education education = new Education(register.Degree, register.GPA,(int)register.UniversityId);
             myContext.Educations.Add(education);
             myContext.SaveChanges();
+
+            //AccountRole accountRole = new AccountRole();
+            //accountRole.NIK = register.NIK;
+            //if (register.RoleId == null)
+            //{
+            //    accountRole.RoleId = 1;
+            //}
+            //accountRole.RoleId = register.RoleId;
+            //myContext.AccountRoles.Add(accountRole);
 
             myContext.Profilings.Add(new Profiling()
             {

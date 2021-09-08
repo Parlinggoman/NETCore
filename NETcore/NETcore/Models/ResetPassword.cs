@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NETcore.Model
+namespace NETcore.Models
 {
     [Table("tb_m_reset_passwords")]
     public class ResetPassword

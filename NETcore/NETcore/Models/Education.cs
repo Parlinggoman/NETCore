@@ -6,7 +6,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace NETcore.Model
+namespace NETcore.Models
 {
     [Table("tb-tr-Education")]
     public class Education

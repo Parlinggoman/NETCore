@@ -1,5 +1,4 @@
-﻿using NETcore.Model;
-using NETcore.ViewModel;
+﻿using NETcore.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

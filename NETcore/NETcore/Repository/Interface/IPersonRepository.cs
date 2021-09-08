@@ -1,4 +1,4 @@
-﻿using NETcore.Model;
+﻿using NETcore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,22 +6,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NETcore.Model;
+
 using System.Net;
 using NETcore.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using NETcore.Models;
+using Microsoft.AspNetCore.Cors;
 
 namespace NETcore.Controllers
 {
+   // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonsController : BaseController<Person, PersonRepository, string>
     {
         private readonly PersonRepository repository;
-        public PersonsController(PersonRepository repository) : base(repository)
+        private readonly RoleRepository roleRepository;
+        public PersonsController(PersonRepository repository,RoleRepository roleRepository) : base(repository)
         {
             this.repository = repository;
+            this.roleRepository = roleRepository;
 
         }
+       // [Authorize(Roles ="HR")]
+       [EnableCors("AllowOrigin")]
         [HttpGet("GetRegisterVM")]
         public ActionResult GetRegister()
         {
@@ -32,16 +40,16 @@ namespace NETcore.Controllers
             {
                 return NotFound(
                    new
-                    {
-                        status = HttpStatusCode.NotFound,
-                        result = getRegister,
-                        message = " Data tidak Ditemukan",
+                   {
+                       status = HttpStatusCode.NotFound,
+                       result = getRegister,
+                       message = " Data tidak Ditemukan",
 
-                    });
+                   });
             }
             else
             {
-                return Ok( new
+                return Ok(new
                 {
                     status = HttpStatusCode.OK,
                     result = getRegister,
@@ -64,7 +72,7 @@ namespace NETcore.Controllers
         //{
         //    throw new NotImplementedException();
         //}
-
+       //[Authorize]
         [HttpGet("GetRegister/{NIK}")]
         public ActionResult GetRegister(string NIK)
         {
@@ -92,35 +100,72 @@ namespace NETcore.Controllers
                 });
             }
         }
-        [HttpPost("Register")]
-        public ActionResult GetRegister(RegisterVM register)
+
+        [HttpPost("register")]
+        public object InsertRegister(RegisterVM registerVM)
         {
             try
             {
-                if (repository.InsertRegister(register) > 0)
+                string massage = repository.ValidationUnique(registerVM.NIK, registerVM.Email, registerVM.PhoneNumber);
+                if (massage != "1")
                 {
-                    return Ok(new { status = HttpStatusCode.OK, message = "Data Berhasil ditambahkan" });
-
-                }
-                else if (repository.InsertRegister(register) == 0)
-                {
-                    return BadRequest(new
+                    return StatusCode((int)HttpStatusCode.BadGateway, new
                     {
-                        status = HttpStatusCode.BadRequest,
-                        message = "Gagal Menambahkan Data "
+                        StatusCode = (int)HttpStatusCode.BadGateway,
+                        message = massage
                     });
                 }
-                else
-                {
-                    return BadRequest(new { status = HttpStatusCode.BadRequest, message = "Data sudah ada" });
 
-                }
+                //check role user
+                registerVM.RoleId = roleRepository.getIdByName("User");
+
+                if (repository.InsertRegister(registerVM) == 1)
+                {
+                    return Ok(new
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        message = "Success register"
+                    });
+                };
+
+                return StatusCode((int)HttpStatusCode.BadGateway, new
+                {
+                    status = (int)HttpStatusCode.BadGateway,
+                    message = "Gagal Register"
+                });
+            }
+            catch (System.Exception e)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, new
+                {
+                    status = (int)HttpStatusCode.InternalServerError,
+                    message = e.Message
+                });
+            }
+        }
+        [HttpPost("addrole")]
+        public ActionResult AddAccountRole(AccountRole accountRole)
+        {
+            try
+            {
+                var test = accountRole;
+
+                repository.AddNewAccountRole(accountRole.NIK, accountRole.RoleId);
+
+                return StatusCode((int)HttpStatusCode.Created, new
+                {
+                    status = (int)HttpStatusCode.Created,
+                    message = "Success created"
+                });
 
             }
-            catch (Exception e)
+            catch (System.Exception e)
             {
-
-                return BadRequest(new { status = HttpStatusCode.BadRequest, message = e.Message });
+                return StatusCode((int)HttpStatusCode.InternalServerError, new
+                {
+                    status = (int)HttpStatusCode.InternalServerError,
+                    message = e.Message
+                });
             }
         }
     }

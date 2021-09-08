@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NETcore.Model;
+using NETcore.Models;
 using NETcore.Repository;
 using System;
 using System.Collections.Generic;

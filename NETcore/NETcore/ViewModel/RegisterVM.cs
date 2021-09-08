@@ -1,4 +1,5 @@
-﻿using NETcore.Model;
+﻿
+using NETcore.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,19 @@ namespace NETcore.ViewModel
         // internal Person.Gender gender;
 
         //  public static int Count { get; internal set; }
-       // [Required]
+        // [Required]
         public string NamaLengkap { get; set; }
-        [Required(ErrorMessage = "NIK Harus di Isi")]
-       // [StringLength(9, ErrorMessage = "NIK Harus Terdiri Dari 9 Digit ")]
+         [Required(ErrorMessage = "NIK Harus di Isi")]
+        // [StringLength(9, ErrorMessage = "NIK Harus Terdiri Dari 9 Digit ")]
         public string NIK { get; set; }
-        [Required(ErrorMessage ="First Name Harus di Isi")]
+        [Required(ErrorMessage = "First Name Harus di Isi")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last Name Harus di Isi")]
         public string LastName { get; set; }
         [Phone(ErrorMessage = "Phone Number Name Harus di Isi")]
-       // [StringLength(12,ErrorMessage ="PhoneNumber Harus Terdiri Dari 12 Digit")]
+        // [StringLength(12,ErrorMessage ="PhoneNumber Harus Terdiri Dari 12 Digit")]
         public string PhoneNumber { get; set; }
-        [Required(ErrorMessage ="BirthDate Harus diisi")]
+        [Required(ErrorMessage = "BirthDate Harus diisi")]
         public DateTime BirthDate { get; set; }
 
 
@@ -45,9 +46,9 @@ namespace NETcore.ViewModel
        EmailAddress(ErrorMessage = "Alamat Email tidak valid")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password tidak boleh kosong"),
-         MinLength(8, ErrorMessage = "Password Minimal 8 Karakter"),
-         RegularExpression("^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\\D*\\d)[^:&.~\\s]{5,20}$", ErrorMessage = "Password harus mengadung huruf besar,huruf kecil dan angka ")]
+        [Required(ErrorMessage = "Password tidak boleh kosong")]
+        // MinLength(8, ErrorMessage = "Password Minimal 8 Karakter"),
+        // RegularExpression("^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\\D*\\d)[^:&.~\\s]{5,20}$", ErrorMessage = "Password harus mengadung huruf besar,huruf kecil dan angka ")]
         public string Password { internal get; set; }
         [Required(ErrorMessage = "Degree tidak boleh kosong")]
         public string Degree { get; set; }
@@ -59,6 +60,7 @@ namespace NETcore.ViewModel
         [Required(ErrorMessage = "RoleId tidak boleh kosong")]
         public int RoleId { get; set; }
 
+        public ICollection<AccountRole> AccountRoles { get; set; }
 
 
     }

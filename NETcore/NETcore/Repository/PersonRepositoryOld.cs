@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NETcore.Context;
 using NETcore.Controllers;
-using NETcore.Model;
+using NETcore.Models;
 using NETcore.Repository.Interface;
 using System;
 using System.Collections.Generic;

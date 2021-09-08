@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NETcore.Base;
-using NETcore.Model;
+using NETcore.Models;
 using NETcore.Repository.Data;
 using System;
 using System.Collections.Generic;

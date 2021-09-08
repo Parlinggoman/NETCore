@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NETcore.Context;
-using NETcore.Model;
+using NETcore.Models;
 using NETcore.ViewModel;
 using System.Linq;
 using System;
@@ -15,12 +15,12 @@ namespace NETcore.Repository.Data
     public class AccountRepository : GeneralRepository<MyContext, Account, string>
     {
         private readonly MyContext myContext;
-        private readonly  DbSet<Account> dbSet;
-  
+        private readonly DbSet<Account> dbSet;
+
         public AccountRepository(MyContext myContext) : base(myContext)
         {
             this.myContext = myContext;
-          this.dbSet = myContext.Set<Account>();
+            dbSet = myContext.Set<Account>();
         }
         public IEnumerable<LoginVM> GetLoginVMs()
         {
@@ -29,6 +29,7 @@ namespace NETcore.Repository.Data
                                p.NIK equals a.NIK
                                select new LoginVM
                                {
+                                 // NIK=p.NIK,
                                    Email = p.NIK,
                                    Password = a.Password
                                }).ToList();
@@ -52,6 +53,7 @@ namespace NETcore.Repository.Data
                     on p.NIK equals a.NIK
                     select new LoginVM
                     {
+                        NIK=p.NIK,
                         Email = p.Email,
                         Password = a.Password,
                     }
@@ -75,6 +77,22 @@ namespace NETcore.Repository.Data
 
             return null;
         }
+        public IEnumerable<RoleVM> getRole(string nIK)
+        {
+            var RoleVMs = (from acc in myContext.Accounts
+                           join ar in myContext.AccountRoles on
+                           acc.NIK equals ar.NIK
+                           join r in myContext.Roles on
+                            ar.RoleId equals r.RoleId
+                           select new RoleVM
+                           {
+                               NIK = acc.NIK,
+                               RoleName = r.Name
+                           }).Where(ar => ar.NIK == nIK);
+
+            return RoleVMs.ToList();
+
+        }
 
 
         public bool SaveResetPassword(string email, int otp, string nik)
@@ -91,10 +109,10 @@ namespace NETcore.Repository.Data
             return true;
         }
 
-        internal object GeneratePasswordResetToken()
-        {
-            throw new NotImplementedException();
-        }
+        //internal object GeneratePasswordResetToken()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public string ResetPassword(string nik, string otp, string newPassword)
         {
@@ -131,7 +149,7 @@ namespace NETcore.Repository.Data
             dbSet.Update(new Account()
             {
                 NIK = nik,
-                Password = BCrypt.Net.BCrypt.HashPassword(newPassword,BCrypt.Net.BCrypt.GenerateSalt(12))
+                Password = BCrypt.Net.BCrypt.HashPassword(newPassword, BCrypt.Net.BCrypt.GenerateSalt(12))
             });
             myContext.SaveChanges();
 
@@ -174,4 +192,3 @@ namespace NETcore.Repository.Data
         }
     }
 }
-
