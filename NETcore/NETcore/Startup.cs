@@ -75,10 +75,24 @@ namespace NETcore
                     IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-            services.AddCors(c =>
+            services.AddCors(options =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                    });
             });
+            //services.AddCors(c =>
+            //{
+            //    c.AddPolicy("AllowOrigin", options =>
+            //    { options.AllowAnyOrigin();
+            //        options.AllowAnyHeader();
+            //        options.AllowAnyMethod();
+            //    });
+            //});
 
         }
 

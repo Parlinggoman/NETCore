@@ -110,3 +110,7 @@ C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.pdb
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.genruntimeconfig.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\Cors\Index.cshtml.g.cs
+C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\LatihanCSS\Index.cshtml.g.cs
+C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Adminlayout.cshtml.g.cs
+C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\LatihanCSS\Admin.cshtml.g.cs
+C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Templateadmin.cshtml.g.cs

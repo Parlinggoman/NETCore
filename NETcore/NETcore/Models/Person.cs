@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
 
 namespace NETcore.Models
 {
@@ -38,6 +39,7 @@ namespace NETcore.Models
             Male,
             Female
         }
+        [JsonConverter(typeof(StringEnumConverter))]
         public Gender GenderName { get; set; }
 
         // one to one with account

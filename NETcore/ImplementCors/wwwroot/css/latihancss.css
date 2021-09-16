@@ -1,0 +1,81 @@
+﻿/*<!DOCTYPE html >
+<html >
+<body >*/
+/** {
+    border: 2px solid #dedede;
+    padding: 15px;
+    margin: 15px;
+    background-color: azure;
+}
+html {
+margin:0;
+padding:0;
+}
+body {
+max-width:600px;
+margin:30px auto;
+font-family:sans-serif;
+color:#333;
+}
+h1 {
+    border : 2px ;
+    width: auto;
+    height:auto;
+    background-color: palegreen;
+    overflow: auto;
+}
+
+div {
+    background-color: lightpink;
+    border: solid 2px black;
+}
+.p1{
+    position: absolute;
+   color:blue;
+    border : solid 5px black;
+    background-color: coral;
+    width: auto;
+    height:auto;
+}
+
+
+ contoh selector
+.p2 {
+    color:blue;
+    background-color: coral;
+    padding:5px;
+}
+.p3 {
+    color: blue;
+    background-color: coral;
+    padding: 5px;
+}
+
+section {
+    background-color: aqua;
+    border: solid 2px black;
+}
+
+#section b=2 {
+    background: teal;
+    color: white;
+    height: 100px;
+    padding: 50px;
+}
+li {
+    color:blue;
+    background-color:chocolate;
+}
+
+.a {
+    padding: 5px;
+    color: blue;
+    border: solid 5px black;
+    background-color: coral;
+}*/
+/*</body >
+</html >
+*/
+.h5 {
+    background-color: palegreen;
+}

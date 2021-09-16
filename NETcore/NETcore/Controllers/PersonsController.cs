@@ -28,8 +28,8 @@ namespace NETcore.Controllers
             this.roleRepository = roleRepository;
 
         }
-       // [Authorize(Roles ="HR")]
-       [EnableCors("AllowOrigin")]
+      //[Authorize(Roles ="User")]
+       [EnableCors("AllowAllOrigins")]
         [HttpGet("GetRegisterVM")]
         public ActionResult GetRegister()
         {
@@ -72,7 +72,8 @@ namespace NETcore.Controllers
         //{
         //    throw new NotImplementedException();
         //}
-       //[Authorize]
+        //[Authorize]
+        [EnableCors("AllowAllOrigins")]
         [HttpGet("GetRegister/{NIK}")]
         public ActionResult GetRegister(string NIK)
         {
@@ -100,7 +101,7 @@ namespace NETcore.Controllers
                 });
             }
         }
-
+        [EnableCors("AllowAllOrigins")]
         [HttpPost("register")]
         public object InsertRegister(RegisterVM registerVM)
         {

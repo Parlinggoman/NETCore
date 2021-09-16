@@ -1,11 +1,14 @@
 ﻿
 using NETcore.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+//using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using static NETcore.Models.Person;
 
 namespace NETcore.ViewModel
 {
@@ -39,7 +42,8 @@ namespace NETcore.ViewModel
         //    Female
         //}
         [Required, Range(0, 1, ErrorMessage = "Gender harus diantara 0 atau 1")]
-        public int Gender { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Gender Gender { get; set; }
         [Required(ErrorMessage = "Salary Depan tidak boleh kosong")]
         public int Salary { get; set; }
         [Required(ErrorMessage = "Email tidak boleh kosong"),
