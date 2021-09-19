@@ -1,8 +1,63 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_Templateadmin";
+
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="container mt-8">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <p class="h1 col-12">Charts</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Gender</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chart">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Univ</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chartuniv">
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Month</h3>
+                </div>
+                <div class="card-body">
+                    <div id="chartmonth">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/clientJS.js"></script>
+}

@@ -81,7 +81,6 @@ C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.csproj.AssemblyReference.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.AssemblyInfoInputs.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.AssemblyInfo.cs
@@ -114,3 +113,4 @@ C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Adminlayout.cshtml.g.cs
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\LatihanCSS\Admin.cshtml.g.cs
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Templateadmin.cshtml.g.cs
+C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\ImplementCors\obj\Debug\netcoreapp3.1\ImplementCors.csproj.AssemblyReference.cache

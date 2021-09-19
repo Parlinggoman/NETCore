@@ -15,7 +15,8 @@ using Microsoft.AspNetCore.Cors;
 
 namespace NETcore.Controllers
 {
-   // [Authorize]
+    [EnableCors("AllowAllOrigins")]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonsController : BaseController<Person, PersonRepository, string>

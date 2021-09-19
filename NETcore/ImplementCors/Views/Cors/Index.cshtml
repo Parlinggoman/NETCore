@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout ="_Templateadmin";
+    Layout = "_Templateadmin";
 }
 
 @*<!DOCTYPE html>
@@ -24,25 +24,41 @@
         })
     </script>*@
 
-<button class="btn btn-primary" data-toggle="modal" data-target="#form">Register</button>
-<table class="table table-striped" id="datatable">
-    <thead>
+<div class="container">
 
-        <tr>
-            <td>Nama</td>
-            <td>NIK</td>
-            <td>Email</td>
-            <td>University</td>
-            <td>GPA</td>
-            <td>Phone Number</td>
-            <td>Salary</td>
-            <td>Gender</td>
-            <td>Action</td>
-        </tr>
+    
+        <button class="btn btn-primary" data-toggle="modal" data-target="#form">Register</button>
+        @*<button class="btn btn-primary" data-toggle="modal" id="downloadexel" data-target="#">Export</button>*@
+        <br><br>
+        <table class="table table-striped" id="datatable">
+            <thead>
 
-    </thead>
-    <tbody id="nik"></tbody>
-</table>
+                <tr>
+                    <td>Nama</td>
+                    <td>NIK</td>
+                    <td>Email</td>
+                    <td>University</td>
+                    <td>GPA</td>
+                    <td>Phone Number</td>
+                    <td>Salary</td>
+                    <td>Gender</td>
+                    <td>Action</td>
+                    
+                </tr>
+
+            </thead>
+            <tbody id="nik"></tbody>
+        </table>
+        @*<script>
+                document.getElementById(downloadexel).addEventListener('click', function () {
+                });
+            </script>*@
+    
+
+</div>
+
+
+
 
 @section Scripts{
     <script src="~/js/clientJS.js"></script>
@@ -68,12 +84,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Delete</button>
             </div>
         </div>
     </div>
 </div>
-
 
 
 @*-----modal--form--*@
@@ -122,31 +137,31 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="birthDate">Birth Date</label>
-                            <input type="date" class="form-control" id="birthDate" placeholder="Birth Date" value="yyyy-mm-dd" required>
+                            <input type="date" class="form-control" id="birthDate" placeholder="Birth Date" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-6 mb-3" id="formgroup">
-                                <label for="Gender">Gender</label>
-                                <select class="custom-select" id="Gender" required>
-                                    <option value=0>Male</option>
-                                    <option value=1>Female</option>
-                                </select>
-                                <div class="valid-feedback">Looks Good.</div>
-                            </div>
+                            <label for="Gender">Gender</label>
+                            <select class="custom-select" id="Gender" required>
+                                <option value=0>Male</option>
+                                <option value=1>Female</option>
+                            </select>
+                            <div class="valid-feedback">Looks Good.</div>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Email" value="gmail.com" required>
+                            <input type="text" class="form-control" id="email" placeholder="Email" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" id="password" placeholder="Password" value="Password" required>
+                            <input type="text" class="form-control" id="password" placeholder="Password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -171,14 +186,17 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="univ">University</label>
-                            <select class="custom-select" id="univ" placeholder="University" value="University" required>
+                            <select class="custom-select" id="univ" placeholder="University" required>
                                 <option value=1> IT- PLN</option>
                                 <option value=2>Telkom</option>
                             </select>
+                            <div class="invalid-feedback">
+                                Please provide a valid University.
+                            </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="degree">Degree</label>
-                            <select class="custom-select" id="degree" placeholder="Email" value="Jurusan" required>
+                            <select class="custom-select" id="degree" placeholder="Email" required>
                                 <option value=1>Teknik Elektro</option>
                                 <option value=2>Teknik Informatika</option>
                                 <option value=3>Sistem Informasi</option>
@@ -191,7 +209,7 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="Role">Role</label>
-                            <input type="text" class="form-control" id="Role" placeholder="Password" value="RoleId" required>
+                            <input type="text" class="form-control" id="Role" placeholder="Password" required>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
@@ -216,7 +234,7 @@
                         </div>
                         <button class="btn btn-primary" type="submit" id="btnSubmit">Submit form</button>
                     </div>
-            </form>
+                </form>
             </div>
 
             <div class="modal-footer">
@@ -226,4 +244,5 @@
         </div>
     </div>
 </div>
+
 

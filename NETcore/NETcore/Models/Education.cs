@@ -18,9 +18,6 @@ namespace NETcore.Models
             GPA = gPA;
             UniversityId = universityId;
         }
-
-      
-
         [Key]
         public int Id { get; set; }
 

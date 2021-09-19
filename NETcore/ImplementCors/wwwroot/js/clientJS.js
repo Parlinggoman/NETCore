@@ -2,7 +2,28 @@
 
 
 $(document).ready(function () {
-    var table = $('#datatable').DataTable({
+    $('#datatable').DataTable({
+        "dom": 'Bfrtip',
+        "buttons": [
+            {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: [1, 2, 4, 5,6,7]
+                },
+                bom: true,
+                id: "expExcel"
+            }
+            ,
+            {
+                extend: 'pdfHtml5',
+                exportOptions: {
+                    columns: [1, 2, 4, 5, 6, 7]
+                },
+                bom: true,
+                id: "expPdf"
+            }
+        ],
+
         "filter": true,
         "ajax": {
             "url": "https://localhost:44396/API/Persons/GetRegisterVM",
@@ -26,23 +47,6 @@ $(document).ready(function () {
                 "data": "universityId",
                 "autoWidth": true
             },
-            //{
-            //    "data": "universityId",
-            //    "render": function (data, type, row) {
-            //        if (row[`universityId`] = (`1`)) {
-            //            return row = IT - PLN
-            //        }
-
-            //        else {
-            //            return row = Telkom
-            //        }
-             
-                    
-            //    }
-            
-            //    },
-            //    "autoWidth": true
-            //},
             {
                 "data": "gpa",
                 "autoWidth": true
@@ -57,10 +61,6 @@ $(document).ready(function () {
                 },
                 "authoWidth": true
             },
-            //{
-            //    "data": "salary",
-            //    "autoWidth": true
-            //},
             {
                 "data": null,
                 "render": function (data, type, row) {
@@ -80,62 +80,19 @@ $(document).ready(function () {
                             class="btn btn-primary"
                             data-toggle ="modal"
                             data-target="#exampleModal"
-                            onclick="detail('${row["nik"]}')">Detail</button></td>`;
+                            onclick="detail('${row["nik"]}')">Detail</button>
+                            <button type = "button" class="btn btn-danger"
+                             id="btnDelete"
+                             onclick = "deleted('${row["nik"]}')">Delete</button ></td>`;
                 
                 },
                
                  "orderable": false
             }
-        ]
-    });
-    //$("#btnSubmit").click(e => {
 
-    //    e.preventDefault();
-    //    const nik = $('#NIK').val();
-    //    const phoneNumber = $('#phone').val();
-    //    const firstName = $('#firstName').val();
-    //    const lastName = $('#lastName').val();
-    //    const birthDate = $('#birthDate').val();
-    //    const gender = $('#Gender').val();
-    //    const salary = $('#salary').val();
-    //    const email = $('#email').val();
-    //    const password = $('#password').val();
-    //    const degree = $('#degree').val();
-    //    const gpa = $('#gpa').val();
-    //    const role = $('#Role').val();
-    //    const universityId = $('#univ').val();
-
-    //    var data = {
-    //        "NIK": nik,
-    //        "FirstName": firstName,
-    //        "LastName": lastName,
-    //        "phoneNumber": phoneNumber,
-    //        "BirthDate": birthDate,
-    //        "Salary": salary,
-    //        "Email": email,
-    //        "Gender": parseInt(gender),
-    //        "Password": password,
-    //        "UniversityId": parseInt(universityId),
-    //        "Degree": degree,
-    //        "GPA": gpa,
-    //        "RoleId": parseInt(roleId)
-    //    };
-
-    //    console.log(data);
-    //    // post data to database
-    //    data = JSON.stringify(data);
-    //    insert(data)
-    //    //idmodal di hide
-    //    $('#form').modal('hide');
-
-
-
-    //    //reload only datatable
-    //    setInterval(function () {
-    //        table.ajax.reload(null, false); // user paging is not reset on reload
-    //    }, 0);
-
-    //});
+        ],
+           });
+ 
 });
 
 (function () {
@@ -189,6 +146,10 @@ $(document).ready(function () {
     }, false);
 })();
 
+
+/*===============Detail=================*/
+
+
 function detail(nik) {
     $.ajax({
         url: "https://localhost:44396/API/Persons/GetRegister/"+nik
@@ -208,9 +169,9 @@ function detail(nik) {
                         <li><b>GPA       : </b>${result.result.gpa}</li>
                         <li><b>Phone Number: </b>${result.result.phoneNumber}</li>
                         <li><b>Salary      : </b>${result.result.salary}</li>
-                           <li><b>Gender      : </b>${result.result.gender}</li>
+                        <li><b>Gender      : </b>${result.result.gender}</li>
                         <li><b>Degree      : </b>${result.result.degree}</li>
-                           <li><b>RoleId      : </b>${result.result.roleId}</li>
+                        <li><b>RoleId      : </b>${result.result.roleId}</li>
                 </ul>`
         $("#exampleModalLabel,modal-title").html(detail);
         title = `<h5>Detail of ${result.result.namaLengkap}</h5>`;
@@ -222,7 +183,6 @@ function detail(nik) {
     });
    
 };
-
 
 
 
@@ -244,172 +204,176 @@ function insert(data) {
     });
 }
 
-//$(document).ready(function () {
+
+/*=============Delete================*/
+function deleted(nik) {
+    console.log(nik)
+    Swal.fire({
+        title: `Are you sure to delete data nik = ${nik}?`,
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "https://localhost:44396/API/Persons/" + nik,
+                type: 'DELETE'
+            }).done((result) => {
+                console.log("berhasil");
+
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }).fail((result) => {
+                console.log("gagal");
+            });
+        }
+    })
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+////delete university
+//deleteModalUniversity = (url) => {
 //    $.ajax({
-//        url: "https://localhost:44396/API/Persons/GetRegisterVM/"
+//        url: url,
 //    }).done((result) => {
-//        console.log(result);
+//        console.log(result.result.universityId);
 
-//        var text = "";
-//        $.each(result.result, function (key, val) {
-//            /*text += `<li>${val.name}</li>`*/
-//            text += `<tr id="result${key + 1}">
-//            <td>${key + 1}</td>
-//            <td>${val.namaLengkap}</td>
-//            <td><button type ="button" class="btn btn-primary" data-toggle ="modal" data-target="#exampleModal${key + 1}">Detail
-//                </button>
-//                <button class="click${key + 1} btn btn-danger">Delete</button>
-//                 <div class= "modal fade" id="exampleModal${key + 1}" tabindex="-1" aria-labelledby="exampleModal${key + 1}Label" aria-hidden="true">
-//                 <div class="modal-dialog">
-//                 <div class="modal-content">
-//                    <div class="modal-header">
-//                        <h5 class="modal-title" id="#exampleModal${key + 1}Label">Detail of ${val.name}</h5>
-//                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-//                            <span aria-label="true">&times;</span>
-//                        </button>
-//                    </div>
+//        Swal.fire({
+//            title: 'Hapus Data',
+//            text: `Anda akan menghapus data ${result.result.name} !`,
+//            icon: 'warning',
+//            showCancelButton: true,
+//            confirmButtonColor: '#3085d6',
+//            cancelButtonColor: '#d33',
+//            confirmButtonText: 'Yes, delete!'
+//        }).then((isDelete) => {
+//            if (isDelete.isConfirmed) {
 
-//                <div class="modal-body">
-                   
-//                    <ul>
-//                       <li><b>Full Name   : </b>${val.namaLengkap}</li>
-////                        <li><b>NIK         :</b> ${val.nik}</li>
-////                        <li><b>Email       : </b>${val.email}</li>
-////                        <li><b>GPA       : </b>${val.gpa}</li>
-////                        <li><b>Phone Number: </b>${val.phoneNumber}</li>                                        
-////                        <li><b>Salary      : </b>${val.salary}</li>
-////                        <li><b>Degree      : </b>${val.degree}</li>
-//                    </ul>
-                
-//                  </div>
-//                <div class="modal-footer">
-//                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-//                        Close
-//                    </button>
-//                </div>
-//              </div>
-//            </div>
+//                $.ajax({
+//                    url: `http://localhost:5002/api/university/${result.result.universityId}`,
+//                    method: 'DELETE',
+//                    success: function (data) {
 
-//            </div>
+//                        Swal.fire(
+//                            'Deleted!',
+//                            'Data berhasil dihapus.',
+//                            'success'
+//                        )
 
-//            </td>
-//            </tr>`;
-//            $(`.click${key + 1}`).click(function () {
-//                let isDelete = confirm(`Delete ${val.nik}`);
-//                if (isDelete) {
-//                    var el = document.getElementById(`result${key + 1}`);
-//                    el.remove();
-//                }
-//            });
-
-
-//        });
-
-
-//        $('#exampleModal').html(text);
-
-//    }).fail((result) => {
-//        console.log(result);
-//    });
-
-
-//});
-
-//const Getregister = (nik) => {
-//    $.ajax({
-//        url: "https://localhost:44396/API/Persons/GetRegisterVM/{NIK}"
-//    }).done((res) => {
-//        console.log(res);
-
-//        let dataRegister = `
-//                         <ul>
-//                        <li><b>Full Name   : </b>${val.namaLengkap}</li>
-//                        <li><b>NIK         :</b> ${val.nik}</li>
-//                        <li><b>Email       : </b>${val.email}</li>
-//                        <li><b>GPA       : </b>${val.gpa}</li>
-//                        <li><b>Phone Number: </b>${val.phoneNumber}</li>                                        
-//                        <li><b>Salary      : </b>${val.salary}</li>
-//                        <li><b>Degree      : </b>${val.degree}</li>
-//                    </ul>`
-//        $(`#exampleModal,modal-body`).html(Getregister);
-//        $(`h5.modal-title`).html(`${res.result.namaLengkap}`.toUpperCase());
-
-//    })
-//} 
-
-//function detail(url) {
-//    $.ajax({
-//        url: url
-//    }).done((result) => {
-//        console.log(result);
-//        var text = "";
-//        var img = "";
-//        var type = "";
-//        var ability = "";
-//        console.log(result.sprites.other.dream_world.front_default);
-//        title = `<h1>${result.forms[0].name}</h1>`;
-//        img = `<img src="${result.sprites.other.dream_world.front_default}" class="rounded mx-auto d-block">`;
-
-//        for (let i = 0; i < result.types.length; i++) {
-//            if (result.types[i].type.name == 'grass') {
-//                type += `
-//                    <span class="badge badge-success">Grass</span>;`
-
-//            } if (result.types[i].type.name == 'poison') {
-//                type += `
-//                    <span class="badge badge-dark">Poison</span>`;
-//            } if (result.types[i].type.name == 'fire') {
-//                type += `
-//                    <span class="badge badge-danger">Fire</span>`;
-//            } if (result.types[i].type.name == 'flying') {
-//                type += `
-//                    <span class="badge badge-warning">Flying</span>`;
-//            } if (result.types[i].type.name == 'water') {
-//                type += `
-//                    <span class="badge badge-primary">Water</span>`;
-//            } if (result.types[i].type.name == 'bug') {
-//                type += `
-//                    <span class="badge badge-secondary">Bug</span>`;
-//            } if (result.types[i].type.name == 'normal') {
-//                type += `
-//                    <span class="badge badge-light">Normal</span>`;
+//                        $('#myTable').DataTable().ajax.reload();
+//                    },
+//                })
 //            }
-//        }
-
-//        text = `
-      
-//               <ul>
-//                <li>ID      : ${result.id}</li>
-//                <li>Name    : ${result.forms[0].name}</li>
-//                <li>Weight  : ${result.weight}</li>
-//                <li>EXP     : ${result.base_experience}</li>
-//                `;
-
-//        for (let j = 0; j < result.abilities.length; j++) {
-//            if (j == 0) {
-//                ability += `<li>Ability : 
-//               <ol>
-//                <li>${result.abilities[0].ability.name}</li>`;
-//            } else if (j == result.abilities.length - 1) {
-//                ability += `
-//                <li>${result.abilities[j].ability.name}</li>
-//                </ol>
-//               </ul>`;
-//            } else {
-//                ability += `<li>${result.abilities[j].ability.name}</li>`
-//            }
-//        }
-
-//        $("#StarWars").modal('show');
-
-
-//        $(".modal-body").html(title + img + type + text + ability + status);
+//        })
 
 //    }).fail((result) => {
 //        console.log(result);
 //    });
 //}
 
-
-//<div class="modal-body">
-//    <div class="col-4">
+/*=========charts=========*/
+$.ajax({
+    url: 'https://localhost:44396/API/Persons/GetRegisterVM',
+    type: "GET"
+}).done((result) => {
+    console.log(result);
+    var female = result.result.filter(data => data.gender === "Female").length;
+    var male = result.result.filter(data => data.gender ==="Male").length;
+    console.log(male);
+    var options = {
+        series: [{
+            data: [male, female]
+        }],
+        chart: {
+            height: 350,
+            type: 'bar',
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 10,
+                dataLabels: {
+                    position: 'top', // top, center, bottom
+                },
+            }
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val;
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '12px',
+                colors: ["#304758"]
+            }
+        },
+        xaxis: {
+            categories: ["Male", "Female"],
+            position: 'top',
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            crosshairs: {
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        colorFrom: '#D8E3F0',
+                        colorTo: '#BED1E6',
+                        stops: [0, 100],
+                        opacityFrom: 0.4,
+                        opacityTo: 0.5,
+                    }
+                }
+            },
+            tooltip: {
+                enabled: true,
+            }
+        },
+        yaxis: {
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: false,
+                formatter: function (val) {
+                    return val;
+                }
+            }
+        }
+    };
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+}).fail((error) => {
+    Swal.fire({
+        title: 'Error!',
+        text: 'Data Cannot Deleted',
+        icon: 'Error',
+        confirmButtonText: 'Next'
+    })
+})

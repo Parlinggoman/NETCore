@@ -181,14 +181,15 @@ namespace NETcore.Base
         {
             //personRepository.Delete(NIK);
             //return Ok("Data Berhasil Dihapus");
+         
             if (repository.Get(key) != null)
             {
                 repository.Delete(key);
                 return Ok(new
                 {
                     status = HttpStatusCode.OK,
-                    data = repository.Get(key),
-                    deletedata = repository.Delete(key),
+                    //data = repository.Get(key),
+                    //deletedata = repository.Delete(key),
                     message = "Data berhasil Dihapus"
                 });
             }

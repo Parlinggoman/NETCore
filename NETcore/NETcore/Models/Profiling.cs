@@ -11,18 +11,7 @@ namespace NETcore.Models
     [Table("tb-tr-Profiling")]
     public class Profiling
     {
-        //[Key]
-
-        //public string NIK { get; set; }
-
-        //[JsonIgnore]
-        //// one to one with Account entities
-        //public virtual Account Account { get; set; }
-
-        //// many to one with education
-        //public int EducationId { get; set; }
-        //[JsonIgnore]
-        //public virtual Education Education { get; set; }
+        
         [Key]
        // [StringLength(9, ErrorMessage = "NIK Harus Terdiri Dari 9 Digit ")]
         public string NIK { get; set; }
@@ -34,3 +23,20 @@ namespace NETcore.Models
         public virtual Account Account { get; set; }
     }
 }
+
+
+
+
+
+//[Key]
+
+//public string NIK { get; set; }
+
+//[JsonIgnore]
+//// one to one with Account entities
+//public virtual Account Account { get; set; }
+
+//// many to one with education
+//public int EducationId { get; set; }
+//[JsonIgnore]
+//public virtual Education Education { get; set; }
