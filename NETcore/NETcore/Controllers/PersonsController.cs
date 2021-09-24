@@ -50,12 +50,13 @@ namespace NETcore.Controllers
             }
             else
             {
-                return Ok(new
-                {
-                    status = HttpStatusCode.OK,
-                    result = getRegister,
-                    message = " Succes",
-                });
+                //return Ok(new
+                //{
+                //    status = HttpStatusCode.OK,
+                //    result = getRegister,
+                //    message = " Succes",
+                //});
+                return Ok(getRegister);
             }
             //{
             //    var get = Ok(new { status = HttpStatusCode.OK, result = registerVM, message = "Succes" });
@@ -94,12 +95,13 @@ namespace NETcore.Controllers
             }
             else
             {
-                return StatusCode((int)HttpStatusCode.OK, new
-                {
-                    status = (int)HttpStatusCode.OK,
-                    result = registerVM,
-                    message = " Succes",
-                });
+                //return StatusCode((int)HttpStatusCode.OK, new
+                //{
+                //    status = (int)HttpStatusCode.OK,
+                //    result = registerVM,
+                //    message = " Succes",
+                //});
+                return Ok(registerVM);
             }
         }
         [EnableCors("AllowAllOrigins")]

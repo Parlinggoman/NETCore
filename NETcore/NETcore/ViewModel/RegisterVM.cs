@@ -53,7 +53,7 @@ namespace NETcore.ViewModel
         [Required(ErrorMessage = "Password tidak boleh kosong")]
         // MinLength(8, ErrorMessage = "Password Minimal 8 Karakter"),
         // RegularExpression("^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\\D*\\d)[^:&.~\\s]{5,20}$", ErrorMessage = "Password harus mengadung huruf besar,huruf kecil dan angka ")]
-        public string Password { internal get; set; }
+        public string Password { get; set; }
         [Required(ErrorMessage = "Degree tidak boleh kosong")]
         public string Degree { get; set; }
         [Required(ErrorMessage = "GPA tidak boleh kosong")]

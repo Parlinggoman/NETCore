@@ -119,7 +119,8 @@ namespace NETcore.Base
 
                 return NotFound(new { status = HttpStatusCode.NotFound, message = "Data Kosong" });
             }
-            return Ok(new { status = HttpStatusCode.OK, data, message = "Data Berhasil ditampilkan" });
+            return Ok(data.Count());
+            //return Ok(new { status = HttpStatusCode.OK, data, message = "Data Berhasil ditampilkan" });
         }
         [HttpGet("{key}")]
         public ActionResult Get(Key key)

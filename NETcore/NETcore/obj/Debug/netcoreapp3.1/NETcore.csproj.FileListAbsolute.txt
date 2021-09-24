@@ -65,12 +65,10 @@ C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.csproj.AssemblyReference.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.AssemblyInfoInputs.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.AssemblyInfo.cs
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.csproj.CoreCompileInputs.cache
-C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\NETcore.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\staticwebassets\NETcore.StaticWebAssets.Manifest.cache
 C:\Users\user\OneDrive - ITPLN\Documents\GitHub\NETCore\NetcoreTugasbaru\NETcore\NETcore\obj\Debug\netcoreapp3.1\staticwebassets\NETcore.StaticWebAssets.xml

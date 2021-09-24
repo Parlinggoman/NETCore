@@ -49,7 +49,7 @@ namespace NETcore.Repository.Data
                                    Degree = edu.Degree,
                                    GPA = edu.GPA,
                                    UniversityId = edu.UniversityId,
-                                   AccountRoles = acc.AccountRoles
+                                   RoleId = accrole.RoleId
 
                                }).ToList();
             if (RegisterVMs.Count == 0)
@@ -97,7 +97,8 @@ namespace NETcore.Repository.Data
                         Degree = edu.Degree,
                         GPA = edu.GPA,
                         UniversityId = edu.UniversityId,
-                        AccountRoles = acc.AccountRoles
+                        RoleId = accrole.RoleId,
+                        //AccountRoles = acc.AccountRoles
 
 
                     }).Where(p => p.NIK == NIK).First();
@@ -129,6 +130,8 @@ namespace NETcore.Repository.Data
                     GenderName = (Person.Gender)register.Gender,
                     Salary = register.Salary,
                     Email=register.Email,
+                    
+                   
                 });
             myContext.SaveChanges();
 

@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+                @*<button type="button" class="btn btn-primary">Delete</button>*@
             </div>
         </div>
     </div>
@@ -143,8 +143,8 @@
                             </div>
                         </div>
                         <div class="col-md-6 mb-3" id="formgroup">
-                            <label for="Gender">Gender</label>
-                            <select class="custom-select" id="Gender" required>
+                            <label for="gender">Gender</label>
+                            <select class="custom-select" id="gender" required>
                                 <option value=0>Male</option>
                                 <option value=1>Female</option>
                             </select>
@@ -189,6 +189,7 @@
                             <select class="custom-select" id="univ" placeholder="University" required>
                                 <option value=1> IT- PLN</option>
                                 <option value=2>Telkom</option>
+                                <option value=3>USU</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please provide a valid University.
@@ -208,8 +209,12 @@
                     </div>
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="Role">Role</label>
-                            <input type="text" class="form-control" id="Role" placeholder="Password" required>
+                            <label for="role">Role</label>
+                            <select class="custom-select" id="role" placeholder="Role" required>
+                                <option value=1>MANAGER</option>
+                                <option value=2>HR</option>
+                                <option value=3>USER</option>
+                            </select>
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
